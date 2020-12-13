@@ -5,9 +5,15 @@ resource "null_resource" "dependency" {
 }
 
 locals {
-  all_hostnames = concat(list(var.bootstrap), var.masters, var.workers)
+  workers {
+    for i in range(length(var.worker_ips)) : format("worker%d", i)
+  }
+
+  #all_hostnames = concat(list(var.bootstrap), var.masters, var.workers)
+  all_hostnames = concat(list(var.bootstrap), var.masters, workers)
   all_ips       = concat(list(var.bootstrap_ip), var.master_ips, var.worker_ips)
-  all_count     = 7
+  #all_count     = 7
+  all_count     = lenth(all_ips)
   esc_pass      = replace(var.vsphere_password,"!", "\\!")
   all_type = concat(
   data.template_file.bootstrap_type.*.rendered,
