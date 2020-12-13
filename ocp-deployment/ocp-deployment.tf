@@ -83,7 +83,7 @@ resource "vsphere_virtual_machine" "workers" {
   depends_on = [vsphere_virtual_machine.masters]
 
   name                 = "worker-${count.index}"
-  folder               = "${var.folder}/${clustername}"
+  folder               = "${var.folder}/${var.clustername}"
 
   resource_pool_id     = data.vsphere_resource_pool.pool.id
   datastore_id         = data.vsphere_datastore.datastore.id
