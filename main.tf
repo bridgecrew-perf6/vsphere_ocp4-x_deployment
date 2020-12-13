@@ -65,6 +65,7 @@ module "deployVM_infranode" {
   vm_template                        = var.infranode_vm_template
   vm_os_password                     = var.infranode_vm_os_password
   vm_os_user                         = var.infranode_vm_os_user
+  clustername                        = var.clustername
   vm_domain                          = var.vm_domain_name
   vm_folder                          = var.vm_folder
   proxy_server                       = var.proxy_server
