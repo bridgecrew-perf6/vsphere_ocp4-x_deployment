@@ -1,7 +1,8 @@
 resource "vsphere_virtual_machine" "vm" {
 
   name             = var.vm_name
-  folder           = $(var.vm_folder + "/" + var.clustername)
+  #folder           = var.vm_folder + "/" + var.clustername)
+  folder           = format( "%s/%s", var.vm_folder, var.clustername )
   num_cpus         = "8"
   memory           = "16384"
   resource_pool_id = data.vsphere_resource_pool.vsphere_resource_pool.id
