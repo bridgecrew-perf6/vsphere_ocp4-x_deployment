@@ -7,7 +7,7 @@
       },    
       {
         "name": "openshift_infra_node_on_vmware",
-        "label": "OpenShift Container Platform 4.2 Infrastructure Node on VMware"
+        "label": "OpenShift Container Platform 4.5.x Infrastructure Node on VMware"
       }
     ], 
     "output_datatypes": [
