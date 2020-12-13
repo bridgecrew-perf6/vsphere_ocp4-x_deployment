@@ -186,6 +186,7 @@ module "ocp-deployment" {
   master_ign            = module.ignition.master_ignitions
   worker_ign            = module.ignition.worker_ignitions
   append_ign            = module.ignition.append_ignition
+  clustername           = var.clustername
   bootstrap_ip          = var.bootstrap_ip
   master_ips            = var.master_ips
   worker_ips            = var.worker_ips
