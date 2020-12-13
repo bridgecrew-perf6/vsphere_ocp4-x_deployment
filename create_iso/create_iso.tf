@@ -66,6 +66,7 @@ resource "null_resource" "downloadiso" {
     inline = [
       "yum install -y wget",
       "yum install -y mkisofs",
+      "yum install -y telnet",
       "curl -sL -o /tmp/installer.iso ${var.binaries["openshift_iso"]}",
       "test -e /tmp/tempiso || mkdir /tmp/tempiso",
       "sudo mount /tmp/installer.iso /tmp/tempiso",
