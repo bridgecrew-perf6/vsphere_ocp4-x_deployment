@@ -40,7 +40,7 @@
     "description": "OpenShift<br>"},
   {
     "title": "Default Virtual Machine Settings",
-    "description": " vCPU 8, Memory (GB) 16, Disk (GB) 400<br>"},
+    "description": "master:  vCPU 16, Memory (GB) 32, Disk (GB) 250<br>worker: vCPU 8, Memory (GB) 16, Disk (GB) 250<br>"},
   {
     "title": "Usage and Special Notes",
     "description": "This template runs on Terraform 0.12.x engine."
