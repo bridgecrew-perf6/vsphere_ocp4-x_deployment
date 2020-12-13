@@ -5,7 +5,7 @@ resource "null_resource" "dependency" {
 }
 
 locals {
-  var.workers = {[
+  workers = {[
     for i in range(${length(var.worker_ips)}) : format("worker%d", i)
   ]}
 
