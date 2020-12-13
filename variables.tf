@@ -85,8 +85,24 @@ variable "bootstrap_ip" {
   type = string
 }
 
+variable "master_vcpu" {
+  type = string
+}
+
+variable "master_memory" {
+  type = string
+}
+
 variable "master_ips" {
   type    = list(string)
+}
+
+variable "worker_vcpu" {
+  type = string
+}
+
+variable "worker_memory" {
+  type = string
 }
 
 variable "worker_ips" {
