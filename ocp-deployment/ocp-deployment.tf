@@ -88,8 +88,8 @@ resource "vsphere_virtual_machine" "workers" {
   resource_pool_id     = data.vsphere_resource_pool.pool.id
   datastore_id         = data.vsphere_datastore.datastore.id
 
-  num_cpus             = worker_vcpu
-  memory               = worker_memory
+  num_cpus             = var.worker_vcpu
+  memory               = var.worker_memory
   guest_id             = data.vsphere_virtual_machine.master-worker-template.guest_id
   scsi_type            = data.vsphere_virtual_machine.master-worker-template.scsi_type
   enable_disk_uuid     = true
