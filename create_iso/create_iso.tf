@@ -17,7 +17,7 @@ locals {
   all_hostnames = concat(list(var.bootstrap), local.lmasters, local.lworkers)
   all_ips       = concat(list(var.bootstrap_ip), var.master_ips, var.worker_ips)
   #all_count     = 7
-  all_count     = lenth(local.all_ips)
+  all_count     = length(local.all_ips)
   esc_pass      = replace(var.vsphere_password,"!", "\\!")
   all_type = concat(
   data.template_file.bootstrap_type.*.rendered,
