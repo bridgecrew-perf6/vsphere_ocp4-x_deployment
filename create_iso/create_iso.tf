@@ -9,10 +9,14 @@ locals {
     for i in range(length(var.worker_ips)) : format("worker%d", i)
   ]
 
+  masters = [
+    for i in range(length(var.master_ips)) : format("master%d", i)
+  ]
+
   all_hostnames = concat(list(var.bootstrap), var.masters, var.workers)
   all_ips       = concat(list(var.bootstrap_ip), var.master_ips, var.worker_ips)
-  all_count     = 7
-  #all_count     = ${lenth(all_ips)}
+  #all_count     = 7
+  all_count     = lenth(all_ips)
   esc_pass      = replace(var.vsphere_password,"!", "\\!")
   all_type = concat(
   data.template_file.bootstrap_type.*.rendered,
