@@ -89,10 +89,10 @@ variable "bootstrap"{
 
 variable "masters"{
   type = list(string)
-  #default = ["master0", "master1", "master2"]
+  default = ["master0", "master1", "master2"]
 }
 
 variable "workers"{
   type = list(string)
-  #default = ["worker0", "worker1", "worker2"]
+  default = ["worker0", "worker1", "worker2"]
 }
