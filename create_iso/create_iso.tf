@@ -6,7 +6,7 @@ resource "null_resource" "dependency" {
 
 locals {
   t_workers = [
-    for i in range(${length(var.worker_ips)}) : format("worker%d", i)
+    for i in range(length(var.worker_ips)) : format("worker%d", i)
   ]
 
   all_hostnames = concat(list(var.bootstrap), var.masters, var.workers)
