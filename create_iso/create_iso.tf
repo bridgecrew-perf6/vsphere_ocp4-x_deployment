@@ -37,12 +37,14 @@ data "template_file" "bootstrap_type" {
 }
 
 data "template_file" "master_type" {
-  count    = 3
+  #count    = 3
+  count    = length(var.master_ips)
   template = "master"
 }
 
 data "template_file" "worker_type" {
-  count    = 3
+  #count    = 3
+  count    = length(var.worker_ips)
   template = "worker"
 }
 
@@ -52,12 +54,14 @@ data "template_file" "bootstrap_index" {
 }
 
 data "template_file" "master_index" {
-  count    = 3
+  #count    = 3
+  count    = length(var.master_ips)
   template = count.index
 }
 
 data "template_file" "worker_index" {
-  count    = 3
+  #count    = 3
+  count    = length(var.worker_ips)
   template = count.index
 }
 
