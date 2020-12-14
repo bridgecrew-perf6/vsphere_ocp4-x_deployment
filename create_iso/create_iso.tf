@@ -5,18 +5,19 @@ resource "null_resource" "dependency" {
 }
 
 locals {
-  #workers = [
-  #  for i in range(length(var.worker_ips)) : format("worker%d", i)
-  #]
+  lworkers = [
+    for i in range(length(var.worker_ips)) : format("worker%d", i)
+  ]
 
-  #masters = [
-  #  for i in range(length(var.master_ips)) : format("master%d", i)
-  #]
+  lmasters = [
+    for i in range(length(var.master_ips)) : format("master%d", i)
+  ]
 
-  all_hostnames = concat(list(var.bootstrap), var.masters, var.workers)
+  #all_hostnames = concat(list(var.bootstrap), var.masters, var.workers)
+  all_hostnames = concat(list(var.bootstrap), local.lmasters, local.lworkers)
   all_ips       = concat(list(var.bootstrap_ip), var.master_ips, var.worker_ips)
-  all_count     = 7
-  #all_count     = lenth(all_ips)
+  #all_count     = 7
+  all_count     = lenth(local.all_ips)
   esc_pass      = replace(var.vsphere_password,"!", "\\!")
   all_type = concat(
   data.template_file.bootstrap_type.*.rendered,
@@ -102,9 +103,11 @@ locals {
 
 resource "null_resource" "generateisos" {
   triggers = {
-    master_hostnames  = join(",", var.masters)
+    #master_hostnames  = join(",", var.masters)
+    master_hostnames  = join(",", local.lmasters)
     master_ips        = join(",", var.master_ips)
-    worker_hostnames  = join(",", var.workers)
+    #worker_hostnames  = join(",", var.workers)
+    worker_hostnames  = join(",", local.lworkers)
     worker_ips        = join(",", var.worker_ips)
 
   }
