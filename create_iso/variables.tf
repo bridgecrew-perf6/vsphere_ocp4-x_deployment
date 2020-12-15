@@ -93,7 +93,7 @@ variable "workers"{
   default = ["worker0", "worker1", "worker2"]
 }
 
-variable "openshift_v4_x86_64_download_url" {
+variable "openshift_v4_x86_64_rhcos_url" {
   type    = string
   default = "https://mirror.openshift.com/pub/openshift-v4/x86_64/dependencies/rhcos"
 }
@@ -104,10 +104,10 @@ variable "openshift_desired_version" {}
 variable "openshift_binaries" {
   type = map(string)
   default = {
-    openshift_iso       = "rhcos-installer.x86_64.iso"
-    openshift_bios      = "rhcos-metal.x86_64.raw.gz"
-    openshift_kernel    = "rhcos-installer-kernel-x86_64"
-    openshift_initramfs = "rhcos-installer-initramfs.x86_64.img"
+    openshift_iso       = "installer.x86_64.iso"
+    openshift_bios      = "metal.x86_64.raw.gz"
+    openshift_kernel    = "installer-kernel-x86_64"
+    openshift_initramfs = "installer-initramfs.x86_64.img"
   }
 }
 
