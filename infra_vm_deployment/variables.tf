@@ -29,6 +29,8 @@ data "vsphere_virtual_machine" "vm_template" {
 ##### Resource : vm_
 #########################################################
 
+variable "clustername" {}
+
 variable "vm_name" {
   type = string
 }
