@@ -89,8 +89,7 @@ variable "bootstrap"{
 
 variable "masters"{
   type = list(string)
-  #default = ["master0", "master1", "master2"]
-  default = [ for i in range(length(var.master_ips)) : format("master%d", i) ]
+  default = ["master0", "master1", "master2"]
 }
 
 variable "workers"{
