@@ -6,7 +6,7 @@ resource "null_resource" "dependency" {
 
 locals {
   installer_workspace     = "${path.module}/installer-files"
-  openshift_installer_url = "${var.openshift_installer_url}/${var.openshift_version}"
+  openshift_installer_url = "${var.openshift_installer_url}/stable-${var.openshift_version}"
 }
 
 
