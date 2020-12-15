@@ -7,7 +7,7 @@
       },    
       {
         "name": "openshift_infra_node_on_vmware",
-        "label": "OpenShift Container Platform 4.2 Infrastructure Node on VMware"
+        "label": "OpenShift Container Platform 4.x Infrastructure Node on VMware"
       }
     ], 
     "output_datatypes": [
@@ -193,7 +193,7 @@
       },
       {
         "name": "ocp_vm_template",
-        "label": "OCP Cluster VMs Template Name (RHCOS 4.2 image template)",
+        "label": "OCP Cluster VMs Template Name (RHCOS 4.5 image template)",
         "default": "${openshift_container_platform_info.ocp_vm_template}",
         "type": "string",
         "description": "Name of the VM template to clone to create VMs for the cluster.",
@@ -324,11 +324,59 @@
         "group_name": "openshift_container_platform_info"
       },
       {
+        "name": "master_vcpu",
+        "label": "Master vCPU",
+        "default":"${openshift_container_platform_info.master_vcpu}",
+        "type": "string",
+        "description": "number of vCPUs for the master node",
+        "required": true,
+        "secured": false,
+        "hidden": false,
+        "immutable": false,
+        "group_name": "openshift_container_platform_info"
+      },
+      {
+        "name": "master_memory",
+        "label": "Master memory",
+        "default":"${openshift_container_platform_info.master_memory}",
+        "type": "string",
+        "description": "size of memory (in MB) for the master node",
+        "required": true,
+        "secured": false,
+        "hidden": false,
+        "immutable": false,
+        "group_name": "openshift_container_platform_info"
+      },
+      {
         "name": "master_ips",
         "label": "Master IPs",
         "default":"${openshift_container_platform_info.master_ips}",
         "type": "list",
         "description": "A list of ip addresses for the master nodes.",
+        "required": true,
+        "secured": false,
+        "hidden": false,
+        "immutable": false,
+        "group_name": "openshift_container_platform_info"
+      },
+      {
+        "name": "worker_vcpu",
+        "label": "Worker vCPU",
+        "default":"${openshift_container_platform_info.worker_vcpu}",
+        "type": "string",
+        "description": "number of vCPUs for the worker node",
+        "required": true,
+        "secured": false,
+        "hidden": false,
+        "immutable": false,
+        "group_name": "openshift_container_platform_info"
+      },
+      {
+        "name": "worker_memory",
+        "label": "Worker memory",
+        "default":"${openshift_container_platform_info.worker_memory}",
+        "type": "string",
+        "description": "size of memory (in MB) for the worker node",
         "required": true,
         "secured": false,
         "hidden": false,

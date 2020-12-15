@@ -13,7 +13,7 @@ resource "vsphere_virtual_machine" "bootstrap" {
   ]
   name                 = "bootstrap"
 
-  folder               = var.folder
+  folder               = "${var.folder}/${var.clustername}"
   resource_pool_id     = data.vsphere_resource_pool.pool.id
   datastore_id         = data.vsphere_datastore.datastore.id
 
@@ -47,13 +47,13 @@ resource "vsphere_virtual_machine" "masters" {
   depends_on = [vsphere_virtual_machine.bootstrap]
 
   name                 = "master-${count.index}"
-  folder               = var.folder
+  folder               = "${var.folder}/${var.clustername}"
 
   resource_pool_id     = data.vsphere_resource_pool.pool.id
   datastore_id         = data.vsphere_datastore.datastore.id
 
-  num_cpus             = 16
-  memory               = 65536
+  num_cpus             = var.master_vcpu
+  memory               = var.master_memory
   guest_id             = data.vsphere_virtual_machine.master-worker-template.guest_id
   scsi_type            = data.vsphere_virtual_machine.master-worker-template.scsi_type
   enable_disk_uuid     = true
@@ -83,17 +83,17 @@ resource "vsphere_virtual_machine" "workers" {
   depends_on = [vsphere_virtual_machine.masters]
 
   name                 = "worker-${count.index}"
-  folder               = var.folder
+  folder               = "${var.folder}/${var.clustername}"
 
   resource_pool_id     = data.vsphere_resource_pool.pool.id
   datastore_id         = data.vsphere_datastore.datastore.id
 
-  num_cpus             = 8
-  memory               = 16384
+  num_cpus             = var.worker_vcpu
+  memory               = var.worker_memory
   guest_id             = data.vsphere_virtual_machine.master-worker-template.guest_id
   scsi_type            = data.vsphere_virtual_machine.master-worker-template.scsi_type
   enable_disk_uuid     = true
-  wait_for_guest_ip_timeout = 60
+  wait_for_guest_ip_timeout = 10
 
   network_interface {
     network_id        = data.vsphere_network.network.id

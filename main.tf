@@ -65,6 +65,7 @@ module "deployVM_infranode" {
   vm_template                        = var.infranode_vm_template
   vm_os_password                     = var.infranode_vm_os_password
   vm_os_user                         = var.infranode_vm_os_user
+  clustername                        = var.clustername
   vm_domain                          = var.vm_domain_name
   vm_folder                          = var.vm_folder
   proxy_server                       = var.proxy_server
@@ -186,7 +187,11 @@ module "ocp-deployment" {
   worker_ign            = module.ignition.worker_ignitions
   append_ign            = module.ignition.append_ignition
   bootstrap_ip          = var.bootstrap_ip
+  master_vcpu           = var.master_vcpu
+  master_memory         = var.master_memory
   master_ips            = var.master_ips
+  worker_vcpu           = var.worker_vcpu
+  worker_memory         = var.worker_memory
   worker_ips            = var.worker_ips
   folder                = var.vm_folder
   rhcos_template_path   = var.ocp_vm_template
