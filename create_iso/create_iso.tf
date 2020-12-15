@@ -13,10 +13,8 @@ locals {
     for i in range(length(var.master_ips)) : format("master%d", i)
   ]
 
-  #all_hostnames = concat(list(var.bootstrap), var.masters, var.workers)
   all_hostnames = concat(list(var.bootstrap), local.lmasters, local.lworkers)
   all_ips       = concat(list(var.bootstrap_ip), var.master_ips, var.worker_ips)
-  #all_count     = 7
   all_count     = length(local.all_ips)
   esc_pass      = replace(var.vsphere_password,"!", "\\!")
   all_type = concat(
@@ -29,6 +27,10 @@ locals {
   data.template_file.master_index.*.rendered,
   data.template_file.worker_index.*.rendered,
   )
+
+  # images
+  lopenshift_iso  = "${var.openshift_v4_x86_64_download_url}/${var.openshift_version}/latest/${var.openshift_binaries["openshift_iso"]}"
+  lopenshift_bios = "${var.openshift_v4_x86_64_download_url}/${var.openshift_version}/latest/${var.openshift_binaries["openshift_bios"]}"
 }
 
 data "template_file" "bootstrap_type" {
@@ -37,13 +39,11 @@ data "template_file" "bootstrap_type" {
 }
 
 data "template_file" "master_type" {
-  #count    = 3
   count    = length(var.master_ips)
   template = "master"
 }
 
 data "template_file" "worker_type" {
-  #count    = 3
   count    = length(var.worker_ips)
   template = "worker"
 }
@@ -54,13 +54,11 @@ data "template_file" "bootstrap_index" {
 }
 
 data "template_file" "master_index" {
-  #count    = 3
   count    = length(var.master_ips)
   template = count.index
 }
 
 data "template_file" "worker_index" {
-  #count    = 3
   count    = length(var.worker_ips)
   template = count.index
 }
@@ -81,7 +79,7 @@ resource "null_resource" "downloadiso" {
       "yum install -y wget",
       "yum install -y mkisofs",
       "yum install -y telnet",
-      "curl -sL -o /tmp/installer.iso ${var.binaries["openshift_iso"]}",
+      "curl -sL -o /tmp/installer.iso ${local.lopenshift_iso}",
       "test -e /tmp/tempiso || mkdir /tmp/tempiso",
       "sudo mount /tmp/installer.iso /tmp/tempiso",
       "test -e /tmp/iso || mkdir /tmp/iso",
@@ -89,13 +87,13 @@ resource "null_resource" "downloadiso" {
       "sudo umount /tmp/tempiso",
       "sudo chmod -R u+w /tmp/iso/",
       "sed -i 's/default vesamenu.c32/default linux/g' /tmp/iso/isolinux/isolinux.cfg",
-      "curl -sL -o /tmp/govc.gz ${var.binaries["govc"]}",
+      "curl -sL -o /tmp/govc.gz ${var.vmware_binary}",
       "gunzip /tmp/govc.gz",
       "sudo chmod 755 /tmp/govc",
       "sudo mv /tmp/govc /usr/local/bin/",
       "chmod +x /usr/local/bin/govc",
       "mkdir /install/",
-      "curl -sL -o /install/bios.raw.gz ${var.binaries["openshift_bios"]} "
+      "curl -sL -o /install/bios.raw.gz ${local.lopenshift_bios}"
     ]
   }
 }

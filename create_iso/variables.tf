@@ -96,3 +96,30 @@ variable "workers"{
   type = list(string)
   default = ["worker0", "worker1", "worker2"]
 }
+
+variable "openshift_v4_x86_64_download_url" {
+  type   = string
+  default = "https://mirror.openshift.com/pub/openshift-v4/x86_64/dependencies/rhcos"
+}
+
+variable "openshift_version" {
+  type    = string
+  default = "4.5"
+}
+
+variable "openshift_binaries" {
+  type = map(string)
+  default = {
+    openshift_iso       = "rhcos-installer.x86_64.iso"
+    openshift_bios      = "rhcos-metal.x86_64.raw.gz"
+    openshift_kernel    = "rhcos-installer-kernel-x86_64"
+    openshift_initramfs = "rhcos-installer-initramfs.x86_64.img"
+  }
+}
+
+variable "vmware_binary" {
+  type    = string
+  default = "https://github.com/vmware/govmomi/releases/download/v0.22.1/govc_linux_amd64.gz"
+} 
+
+
