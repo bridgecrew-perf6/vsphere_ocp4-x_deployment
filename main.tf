@@ -115,7 +115,6 @@ module "iso-creation"{
   dependsOn = [module.ignition.dependsOn]
 
   source                        = "./create_iso"
-  binaries                      = var.binaries
   openshift_version             = var.openshift_version
   bootstrap_ip                  = var.bootstrap_ip
   master_ips                    = var.master_ips
