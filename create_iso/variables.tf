@@ -102,10 +102,7 @@ variable "openshift_v4_x86_64_download_url" {
   default = "https://mirror.openshift.com/pub/openshift-v4/x86_64/dependencies/rhcos"
 }
 
-variable "openshift_version" {
-  type    = string
-  default = "4.5"
-}
+variable "openshift_version" {}
 
 variable "openshift_binaries" {
   type = map(string)
