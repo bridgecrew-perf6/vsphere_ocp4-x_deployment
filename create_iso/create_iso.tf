@@ -30,8 +30,8 @@ locals {
   )
 
   # images
-  lopenshift_iso  = "${var.openshift_v4_x86_64_download_url}/${var.openshift_base_version}/${openshift_desired_version}/${var.openshift_binaries["openshift_iso"]}"
-  lopenshift_bios = "${var.openshift_v4_x86_64_download_url}/${var.openshift_base_version}/${openshift_desired_version}/${var.openshift_binaries["openshift_bios"]}"
+  lopenshift_iso  = "${var.openshift_v4_x86_64_download_url}/${var.openshift_base_version}/${var.openshift_desired_version}/${var.openshift_binaries["openshift_iso"]}"
+  lopenshift_bios = "${var.openshift_v4_x86_64_download_url}/${var.openshift_base_version}/${var.openshift_desired_version}/${var.openshift_binaries["openshift_bios"]}"
 }
 
 data "template_file" "bootstrap_type" {
