@@ -119,4 +119,5 @@ variable "vmware_binary" {
   default = "https://github.com/vmware/govmomi/releases/download/v0.22.1/govc_linux_amd64.gz"
 } 
 
+variable "binaries" {}
 
