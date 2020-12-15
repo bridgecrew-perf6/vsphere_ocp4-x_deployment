@@ -31,8 +31,8 @@ locals {
 
   # images
   lopenshift_url  = "${var.openshift_v4_x86_64_rhcos_url}/${var.openshift_base_version}/${var.openshift_desired_version}"
-  lopenshift_iso  = "${lcoal.lopenshift_url}/rhcos-${var.openshift_desired_version}-x86_64-${var.openshift_binaries["openshift_iso"]}"
-  lopenshift_bios = "${lcoal.lopenshift_url}/rhcos-${var.openshift_desired_version}-x86_64-${var.openshift_binaries["openshift_bios"]}"
+  lopenshift_iso  = "${local.lopenshift_url}/rhcos-${var.openshift_desired_version}-x86_64-${var.openshift_binaries["openshift_iso"]}"
+  lopenshift_bios = "${local.lopenshift_url}/rhcos-${var.openshift_desired_version}-x86_64-${var.openshift_binaries["openshift_bios"]}"
 }
 
 data "template_file" "bootstrap_type" {
