@@ -1,6 +1,6 @@
 variable "openshift_version" {
   type    = string
-  default = "stable-4.5"
+  default = "4.5"
 }
 
 variable "vsphere_network" {
