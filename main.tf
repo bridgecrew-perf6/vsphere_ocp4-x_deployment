@@ -88,7 +88,7 @@ module "ignition" {
   source                        = "./ignition"
   cluster_name                  = var.clustername
   base_domain                   = var.vm_domain_name
-  openshift_version             = var.openshift_version
+  openshift_desired_version     = var.openshift_desired_version
   openshift_pull_secret         = var.pullsecret
   public_ssh_key                = chomp(tls_private_key.installkey.public_key_openssh)
   datacenter                    = var.vsphere_datacenter
@@ -115,7 +115,7 @@ module "iso-creation"{
   dependsOn = [module.ignition.dependsOn]
 
   source                        = "./create_iso"
-  openshift_version             = var.openshift_version
+  openshift_base_version        = var.openshift_base_version
   bootstrap_ip                  = var.bootstrap_ip
   master_ips                    = var.master_ips
   worker_ips                    = var.worker_ips

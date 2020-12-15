@@ -39,7 +39,7 @@ variable "openshift_installer_url" {
   default = "https://mirror.openshift.com/pub/openshift-v4/clients/ocp"
 }
 
-variable "openshift_version" {
+variable "openshift_desired_version" {
   type    = string
 }
 
