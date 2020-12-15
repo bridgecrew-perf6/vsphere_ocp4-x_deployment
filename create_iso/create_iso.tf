@@ -5,6 +5,7 @@ resource "null_resource" "dependency" {
 }
 
 locals {
+  # collect names of all workers and masters by their IP addresses
   lworkers = [
     for i in range(length(var.worker_ips)) : format("worker%d", i)
   ]
