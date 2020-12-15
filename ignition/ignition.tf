@@ -38,6 +38,8 @@ case $(uname -s) in
     exit 1;;
 esac
 chmod u+x ${local.installer_workspace}/jq
+chmod u+x ${local.installer_workspace}/kubectl
+chmod u+x ${local.installer_workspace}/oc
 rm -f ${local.installer_workspace}/*.tar.gz ${local.installer_workspace}/robots*.txt* ${local.installer_workspace}/README.md
 EOF
   }

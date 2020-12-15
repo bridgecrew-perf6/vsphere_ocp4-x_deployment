@@ -89,7 +89,7 @@ module "ignition" {
   cluster_name                  = var.clustername
   base_domain                   = var.vm_domain_name
   openshift_base_version        = "${lookup(var.openshift_version_info["${var.openshift_version}"],"base")}"
-  openshift_desired_version     = "${lookup(var.openshift_version_info["${var.openshift_version}"],"base")}"
+  openshift_desired_version     = "${lookup(var.openshift_version_info["${var.openshift_version}"],"desired")}"
   openshift_pull_secret         = var.pullsecret
   public_ssh_key                = chomp(tls_private_key.installkey.public_key_openssh)
   datacenter                    = var.vsphere_datacenter
@@ -117,7 +117,7 @@ module "iso-creation"{
 
   source                        = "./create_iso"
   openshift_base_version        = "${lookup(var.openshift_version_info["${var.openshift_version}"],"base")}"
-  openshift_desired_version     = "${lookup(var.openshift_version_info["${var.openshift_version}"],"base")}"
+  openshift_desired_version     = "${lookup(var.openshift_version_info["${var.openshift_version}"],"desired")}"
   bootstrap_ip                  = var.bootstrap_ip
   master_ips                    = var.master_ips
   worker_ips                    = var.worker_ips
