@@ -116,6 +116,7 @@ module "iso-creation"{
 
   source                        = "./create_iso"
   binaries                      = var.binaries
+  openshift_version             = var.openshift_version
   bootstrap_ip                  = var.bootstrap_ip
   master_ips                    = var.master_ips
   worker_ips                    = var.worker_ips
