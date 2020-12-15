@@ -122,11 +122,12 @@ resource "null_resource" "move_kubectl" {
   }
 
   provisioner "file" {
-    source = "${local.installer_workspace}/kubectl"
+    source      = "${local.installer_workspace}/kubectl"
     destination = "/usr/local/bin/kubectl"
-    command = <<EOF
-chmod u+x /usr/local/bin/kubectl
-EOF
+  }
+
+  provisioner "remote-exec" {
+    inline      = ["chmod +x /usr/local/bin/kubectl"]
   }
 }
 resource "null_resource" "move_oc" {
@@ -141,11 +142,12 @@ resource "null_resource" "move_oc" {
   }
 
   provisioner "file" {
-    source = "${local.installer_workspace}/oc"
+    source      = "${local.installer_workspace}/oc"
     destination = "/usr/local/bin/oc"
-    command = <<EOF
-chmod u+x /usr/local/bin/oc
-EOF
+  }
+
+  provisioner "remote-exec" {
+    inline      = ["chmod +x /usr/local/bin/oc"]
   }
 }
 
