@@ -39,9 +39,8 @@ variable "openshift_installer_url" {
   default = "https://mirror.openshift.com/pub/openshift-v4/clients/ocp"
 }
 
-variable "openshift_desired_version" {
-  type    = string
-}
+variable "openshift_base_version" {}
+variable "openshift_desired_version" {}
 
 variable "vcenter_url" {
   type = string

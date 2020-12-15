@@ -94,11 +94,12 @@ variable "workers"{
 }
 
 variable "openshift_v4_x86_64_download_url" {
-  type   = string
+  type    = string
   default = "https://mirror.openshift.com/pub/openshift-v4/x86_64/dependencies/rhcos"
 }
 
 variable "openshift_base_version" {}
+variable "openshift_desired_version" {}
 
 variable "openshift_binaries" {
   type = map(string)
