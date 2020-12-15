@@ -1,5 +1,5 @@
 {
-    "name": "OpenShift Container Platform Enterprise 4.5.x Installation for Terrafrom 0.12.x- Using Proxy",
+    "name": "OpenShift Container Platform Enterprise (test) Installation for Terrafrom 0.12.x- Using Proxy",
     "description": "This template will deploy an HA-ready version of OpenShift Container Platform. This template uses Terraform 0.12.x engine.",
     "version": "4.5",
     "imageUrl": "",
