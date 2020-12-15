@@ -1,7 +1,7 @@
 {
-    "name": "OpenShift Container Platform Enterprise (test) Installation for Terrafrom 0.12.x- Using Proxy",
+    "name": "OpenShift Container Platform Enterprise test Installation for Terrafrom 0.12.x- Using Proxy",
     "description": "This template will deploy an HA-ready version of OpenShift Container Platform. This template uses Terraform 0.12.x engine.",
-    "version": "4.5",
+    "version": "",
     "imageUrl": "",
     "image": "",
     "type": "prebuilt",
@@ -31,7 +31,7 @@
     "description": " VMware vSphere<br>"},
   {
     "title": "Operating Systems Supported",
-    "description": "RHEL 7.6 on Infra node, RHCOS 4.5 on OCP cluster nodes<br>"},
+    "description": "RHEL 7.6 on Infra node, RHCOS on OCP cluster nodes<br>"},
   {
     "title": "Topology",
     "description": "Medium/HA<br>"},
@@ -40,7 +40,7 @@
     "description": "OpenShift<br>"},
   {
     "title": "Default Virtual Machine Settings",
-    "description": "master:  vCPU 16, Memory (GB) 32, Disk (GB) 250<br>worker: vCPU 8, Memory (GB) 16, Disk (GB) 250<br>"},
+    "description": "master:  vCPU 16, Memory (GB) 32, Disk (GB) 250<br>worker: vCPU  8, Memory (GB) 16, Disk (GB) 250<br>"},
   {
     "title": "Usage and Special Notes",
     "description": "This template runs on Terraform 0.12.x engine."
