@@ -57,7 +57,7 @@ resource "vsphere_virtual_machine" "masters" {
   guest_id             = data.vsphere_virtual_machine.master-worker-template.guest_id
   scsi_type            = data.vsphere_virtual_machine.master-worker-template.scsi_type
   enable_disk_uuid     = true
-  wait_for_guest_ip_timeout = 35
+  wait_for_guest_ip_timeout = 40
 
   network_interface {
     network_id        = data.vsphere_network.network.id
