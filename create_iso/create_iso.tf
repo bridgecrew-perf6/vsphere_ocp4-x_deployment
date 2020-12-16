@@ -13,10 +13,8 @@ locals {
     for i in range(length(var.master_ips)) : format("master%d", i)
   ]
 
-  #all_hostnames = concat(list(var.bootstrap), var.masters, var.workers)
   all_hostnames = concat(list(var.bootstrap), local.lmasters, local.lworkers)
   all_ips       = concat(list(var.bootstrap_ip), var.master_ips, var.worker_ips)
-  #all_count     = 7
   all_count     = length(local.all_ips)
   esc_pass      = replace(var.vsphere_password,"!", "\\!")
   all_type = concat(
@@ -37,13 +35,11 @@ data "template_file" "bootstrap_type" {
 }
 
 data "template_file" "master_type" {
-  #count    = 3
   count    = length(var.master_ips)
   template = "master"
 }
 
 data "template_file" "worker_type" {
-  #count    = 3
   count    = length(var.worker_ips)
   template = "worker"
 }
@@ -54,13 +50,11 @@ data "template_file" "bootstrap_index" {
 }
 
 data "template_file" "master_index" {
-  #count    = 3
   count    = length(var.master_ips)
   template = count.index
 }
 
 data "template_file" "worker_index" {
-  #count    = 3
   count    = length(var.worker_ips)
   template = count.index
 }
@@ -107,10 +101,8 @@ locals {
 
 resource "null_resource" "generateisos" {
   triggers = {
-    #master_hostnames  = join(",", var.masters)
     master_hostnames  = join(",", local.lmasters)
     master_ips        = join(",", var.master_ips)
-    #worker_hostnames  = join(",", var.workers)
     worker_hostnames  = join(",", local.lworkers)
     worker_ips        = join(",", var.worker_ips)
 
