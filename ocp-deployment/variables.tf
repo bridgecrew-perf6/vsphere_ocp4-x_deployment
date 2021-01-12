@@ -10,9 +10,11 @@ variable "bootstrap_ip" {}
 variable "master_vcpu" {}
 variable "master_memory" {}
 variable "master_ips" {}
+variable "master_ready_timeout" {}
 variable "worker_vcpu" {}
 variable "worker_memory" {}
 variable "worker_ips" {}
+variable "worker_ready_timeout" {}
 variable "rhcos_template_path" {}
 
 // Ignition Files

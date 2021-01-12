@@ -190,9 +190,11 @@ module "ocp-deployment" {
   master_vcpu           = var.master_vcpu
   master_memory         = var.master_memory
   master_ips            = var.master_ips
+  master_ready_timeout  = var.master_ready_timeout
   worker_vcpu           = var.worker_vcpu
   worker_memory         = var.worker_memory
   worker_ips            = var.worker_ips
+  worker_ready_timeout  = var.worker_ready_timeout
   folder                = var.vm_folder
   rhcos_template_path   = var.ocp_vm_template
   vsphere_datacenter    = var.vsphere_datacenter

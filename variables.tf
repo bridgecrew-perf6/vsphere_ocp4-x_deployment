@@ -1,6 +1,6 @@
 variable "openshift_version" {
   type    = string
-  default = "4.5.6"
+  default = "4.6.8"
 }
 
 variable "vsphere_network" {
@@ -94,7 +94,11 @@ variable "master_memory" {
 }
 
 variable "master_ips" {
-  type    = list(string)
+  type = list(string)
+}
+
+variable "master_ready_timeout" {
+  type = string
 }
 
 variable "worker_vcpu" {
@@ -106,7 +110,11 @@ variable "worker_memory" {
 }
 
 variable "worker_ips" {
-  type    = list(string)
+  type = list(string)
+}
+
+variable "worker_ready_timeout" {
+  type = string
 }
 
 variable "vm_folder" {
