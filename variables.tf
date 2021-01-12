@@ -97,6 +97,10 @@ variable "master_ips" {
   type    = list(string)
 }
 
+variable "master_ready_timeout" {
+  type = string
+}
+
 variable "worker_vcpu" {
   type = string
 }
@@ -107,6 +111,10 @@ variable "worker_memory" {
 
 variable "worker_ips" {
   type    = list(string)
+}
+
+variable "worker_ready_timeout" {
+  type = string
 }
 
 variable "vm_folder" {

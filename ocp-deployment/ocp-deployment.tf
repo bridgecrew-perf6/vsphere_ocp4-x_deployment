@@ -43,21 +43,22 @@ resource "vsphere_virtual_machine" "bootstrap" {
 }
 
 resource "vsphere_virtual_machine" "masters" {
-  count = length(var.master_ips)
-  depends_on = [vsphere_virtual_machine.bootstrap]
+  count                     = length(var.master_ips)
+  depends_on                = [vsphere_virtual_machine.bootstrap]
 
-  name                 = "master-${count.index}"
-  folder               = "${var.folder}/${var.clustername}"
+  name                      = "master-${count.index}"
+  folder                    = "${var.folder}/${var.clustername}"
 
-  resource_pool_id     = data.vsphere_resource_pool.pool.id
-  datastore_id         = data.vsphere_datastore.datastore.id
+  resource_pool_id          = data.vsphere_resource_pool.pool.id
+  datastore_id              = data.vsphere_datastore.datastore.id
 
-  num_cpus             = var.master_vcpu
-  memory               = var.master_memory
-  guest_id             = data.vsphere_virtual_machine.master-worker-template.guest_id
-  scsi_type            = data.vsphere_virtual_machine.master-worker-template.scsi_type
-  enable_disk_uuid     = true
-  wait_for_guest_ip_timeout = 40
+  num_cpus                  = var.master_vcpu
+  memory                    = var.master_memory
+  guest_id                  = data.vsphere_virtual_machine.master-worker-template.guest_id
+  scsi_type                 = data.vsphere_virtual_machine.master-worker-template.scsi_type
+  enable_disk_uuid          = true
+  #wait_for_guest_ip_timeout = 40
+  wait_for_guest_ip_timeout = var.master_ready_timeout
 
   network_interface {
     network_id        = data.vsphere_network.network.id
@@ -79,21 +80,22 @@ resource "vsphere_virtual_machine" "masters" {
 }
 
 resource "vsphere_virtual_machine" "workers" {
-  count = length(var.worker_ips)
-  depends_on = [vsphere_virtual_machine.masters]
+  count                     = length(var.worker_ips)
+  depends_on                = [vsphere_virtual_machine.masters]
 
-  name                 = "worker-${count.index}"
-  folder               = "${var.folder}/${var.clustername}"
+  name                      = "worker-${count.index}"
+  folder                    = "${var.folder}/${var.clustername}"
 
-  resource_pool_id     = data.vsphere_resource_pool.pool.id
-  datastore_id         = data.vsphere_datastore.datastore.id
+  resource_pool_id          = data.vsphere_resource_pool.pool.id
+  datastore_id              = data.vsphere_datastore.datastore.id
 
-  num_cpus             = var.worker_vcpu
-  memory               = var.worker_memory
-  guest_id             = data.vsphere_virtual_machine.master-worker-template.guest_id
-  scsi_type            = data.vsphere_virtual_machine.master-worker-template.scsi_type
-  enable_disk_uuid     = true
-  wait_for_guest_ip_timeout = 35
+  num_cpus                  = var.worker_vcpu
+  memory                    = var.worker_memory
+  guest_id                  = data.vsphere_virtual_machine.master-worker-template.guest_id
+  scsi_type                 = data.vsphere_virtual_machine.master-worker-template.scsi_type
+  enable_disk_uuid          = true
+  #wait_for_guest_ip_timeout = 35
+  wait_for_guest_ip_timeout = var.worker_ready_timeout
 
   network_interface {
     network_id        = data.vsphere_network.network.id
