@@ -1,7 +1,6 @@
 resource "vsphere_virtual_machine" "vm" {
 
-  name             = var.vm_name
-  #folder           = var.vm_folder
+  name             = "${var.clustername}/-${var.vm_name}"
   folder           = "${var.vm_folder}/${var.clustername}"
   num_cpus         = "8"
   memory           = "16384"

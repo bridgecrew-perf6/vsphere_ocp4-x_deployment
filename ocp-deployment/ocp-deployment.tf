@@ -11,7 +11,7 @@ resource "vsphere_virtual_machine" "bootstrap" {
   depends_on = [
     null_resource.dependency
   ]
-  name                 = "bootstrap"
+  name                 = "${var.clustername}-bootstrap"
 
   folder               = "${var.folder}/${var.clustername}"
   resource_pool_id     = data.vsphere_resource_pool.pool.id
@@ -46,7 +46,7 @@ resource "vsphere_virtual_machine" "masters" {
   count                     = length(var.master_ips)
   depends_on                = [vsphere_virtual_machine.bootstrap]
 
-  name                      = "master-${count.index}"
+  name                      = "${var.clustername}-master-${count.index}"
   folder                    = "${var.folder}/${var.clustername}"
 
   resource_pool_id          = data.vsphere_resource_pool.pool.id
@@ -83,7 +83,7 @@ resource "vsphere_virtual_machine" "workers" {
   count                     = length(var.worker_ips)
   depends_on                = [vsphere_virtual_machine.masters]
 
-  name                      = "worker-${count.index}"
+  name                      = "${var.clustername}-worker-${count.index}"
   folder                    = "${var.folder}/${var.clustername}"
 
   resource_pool_id          = data.vsphere_resource_pool.pool.id
