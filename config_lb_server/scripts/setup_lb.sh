@@ -65,7 +65,8 @@ function install_haproxy() {
     yum -y install haproxy
     setsebool -P haproxy_connect_any=1
     cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.orig
-	systemctl start haproxy
+    systemctl enable haproxy
+    systemctl start haproxy
 }
 
 # Restart the HAProxy
@@ -81,3 +82,5 @@ create_control_lb_endpoints
 create_compute_lb_endpoints
 cat /etc/haproxy/haproxy.cfg 
 start_lb_server
+systemctl stop firewalld
+systemctl disable firewalld
