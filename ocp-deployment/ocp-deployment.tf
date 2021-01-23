@@ -18,7 +18,7 @@ resource "vsphere_virtual_machine" "bootstrap" {
   datastore_id         = data.vsphere_datastore.datastore.id
 
   num_cpus             = 4
-  memory               = 16384
+  memory               = 8192
   guest_id             = data.vsphere_virtual_machine.master-worker-template.guest_id
   scsi_type            = data.vsphere_virtual_machine.master-worker-template.scsi_type
   enable_disk_uuid     = true
