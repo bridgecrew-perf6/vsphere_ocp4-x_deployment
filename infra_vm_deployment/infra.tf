@@ -1,10 +1,9 @@
 resource "vsphere_virtual_machine" "vm" {
 
   name             = "${var.clustername}-${var.vm_name}"
-  #folder           = var.vm_folder
   folder           = "${var.vm_folder}/${var.clustername}"
-  num_cpus         = "4"
-  memory           = "8192"
+  num_cpus         = "8"
+  memory           = "16384"
   resource_pool_id = data.vsphere_resource_pool.vsphere_resource_pool.id
   datastore_id     = data.vsphere_datastore.vsphere_datastore.id
   guest_id         = data.vsphere_virtual_machine.vm_template.guest_id
