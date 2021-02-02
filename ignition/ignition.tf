@@ -193,6 +193,18 @@ data "local_file" "kubeconfig" {
   filename = "${local.installer_workspace}/auth/kubeconfig"
 }
 
+resource "null_resource" "chmod_kubectl_oc_updated" {
+  depends_on = [
+    null_resource.move_kubeconfig
+  ]
+  provisioner "local-exec" {
+    inline = [
+      "chmod +x /usr/local/bin/kubectl",
+      "chmod +x /usr/local/bin/oc",
+    ]
+  }
+}
+
 resource "null_resource" "ignition_files_created" {
   depends_on = [
     null_resource.move_kubeconfig
