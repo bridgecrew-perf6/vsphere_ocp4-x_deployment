@@ -16,10 +16,8 @@ resource "null_resource" "approve_csr" {
 
   provisioner "remote-exec" {
     inline = [
-      "chmod +x /usr/local/bin/kubectl",
-      "chmod +x /usr/local/bin/oc",
       "export KUBECONFIG=/opt/kubeconfig",
-      "for i in {1 4 8 12}; do oc get csr -o name | xargs oc adm certificate approve; sleep 240; done",
+      "for i in `seq 0 200`; do oc get csr -o name | xargs oc adm certificate approve; sleep 30; done",
 
     ]
   }
