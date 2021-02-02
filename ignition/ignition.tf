@@ -125,6 +125,12 @@ resource "null_resource" "move_kubectl" {
     source = "${local.installer_workspace}/kubectl"
     destination = "/usr/local/bin/kubectl"
   }
+
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /usr/local/bin/kubectl",
+    ]
+  }
 }
 resource "null_resource" "move_oc" {
 
@@ -140,6 +146,12 @@ resource "null_resource" "move_oc" {
   provisioner "file" {
     source = "${local.installer_workspace}/oc"
     destination = "/usr/local/bin/oc"
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /usr/local/bin/oc",
+    ]
   }
 }
 
@@ -191,18 +203,6 @@ data "local_file" "bootstrap_ign" {
 data "local_file" "kubeconfig" {
   depends_on = [null_resource.generate_ignition]
   filename = "${local.installer_workspace}/auth/kubeconfig"
-}
-
-resource "null_resource" "chmod_kubectl_oc_updated" {
-  depends_on = [
-    null_resource.move_kubeconfig
-  ]
-  provisioner "local-exec" {
-    inline = [
-      "chmod +x /usr/local/bin/kubectl",
-      "chmod +x /usr/local/bin/oc",
-    ]
-  }
 }
 
 resource "null_resource" "ignition_files_created" {
